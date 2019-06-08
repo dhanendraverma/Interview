@@ -1,0 +1,62 @@
+•	Write a structure containing int, char and float variable
+
+struct temp{
+    int a;
+    char b;
+    float c;
+};
+
+
+•	Call the structure in main function 
+
+Int main()
+{
+temp temporary1, temporary2;
+return 0;
+}
+
+
+•	Is there any other way of creating objects  of structure type
+struct temp{
+    int a;
+    char b;
+    float c;
+} temporary1, temporary2;
+
+
+•	What is the size of int and it’s value range
+cout<<sizeof(int)  
+ans = 4 (in bytes)
+
+cout<<INT_MAX<<" to"<<INT_MIN;
+range  = 2147483647 to  -2147483648
+-(2^16 - 1)   to   (2^16 - 1)
+As int has 4 bytes so 4*8 = 32bits (16 for +ve values and 16 for -ve values) 
+
+
+•	Change previously defined structure and define unsigned int of 16, 32 and 64 bits
+struct temp{
+    uint_16 a;
+    unit_32 b;
+    uint_64 c;
+} temporary1, temporary2;
+
+•	Does the order of their declaration matter?
+•	What is the size of above structure?
+Ans to both the question can be explained with the help of padding and packing concepts 
+Below links can be helpful for better understading
+https://www.youtube.com/watch?v=QSuBwGmFQqA
+
+https://stackoverflow.com/questions/7970383/extra-bytes-when-declaring-a-member-of-a-ssssstruct-as-uint32-t
+https://stackoverflow.com/questions/119123/why-isnt-sizeof-for-a-struct-equal-to-the-sum-of-sizeof-of-each-member
+
+However for this specific case answer is 16 bytes for all orders coincidentally!!
+
+•	What exactly the the sizeof does
+
+
+
+
+
+
+
