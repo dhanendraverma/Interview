@@ -53,6 +53,23 @@ https://stackoverflow.com/questions/119123/why-isnt-sizeof-for-a-struct-equal-to
 However for this specific case answer is 16 bytes for all orders coincidentally!!
 
 •	What exactly the the sizeof does
+It’s used to get the size of classes, structures, data variables and other user defined data types.
+When sizeof is applied on the array type then it gives the size in terms of bytes occupied by the 
+Array in the memory. However when an pointer to the array is passes it will give the sizeof the pointer which is of 4 bytes in general machine and C language.
+
+
+•	sizeof is an operator or function
+according to C++11 standards the sizeof is an operator more detailed explanation can 
+be fond here:
+https://stackoverflow.com/questions/1393582/why-is-sizeof-considered-an-operator
+
+
+
+•	Explain the operation of memcpy 
+memcpy takes 3 parameters memcpy(void *dest, void * src, size_t num)
+it takes the pointer to the memory of any object they are irrelevant and copy the  num bytes values from src to dest. The binary copy of data is maintained. If the objects overlap or either of them is null in that case the behavior is undefined, even if count is zero.
+
+
 
 
 
