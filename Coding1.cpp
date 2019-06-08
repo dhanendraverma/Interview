@@ -5,6 +5,10 @@ which returns a string, containing each letter in the string snd it's occurance 
 same order as they are in the given string. No letter should be reapeted in the 
 retunrned string.
 
+Example:
+Input - aawwatoytwoqrlr
+Output - a3w3t2o2y1q1r2l1
+
 ******************************************************************************************/
 
 
