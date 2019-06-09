@@ -1,5 +1,4 @@
-•	Write a structure containing int, char and float variable
-
+1.Write a structure containing int, char and float variable
 struct temp{
     int a;
     char b;
@@ -7,8 +6,7 @@ struct temp{
 };
 
 
-•	Call the structure in main function 
-
+2.Call the structure in main function 
 Int main()
 {
 temp temporary1, temporary2;
@@ -16,7 +14,7 @@ return 0;
 }
 
 
-•	Is there any other way of creating objects  of structure type
+3.Is there any other way of creating objects  of structure type
 struct temp{
     int a;
     char b;
@@ -24,56 +22,148 @@ struct temp{
 } temporary1, temporary2;
 
 
-•	What is the size of int and it’s value range
-cout<<sizeof(int)  
-ans = 4 (in bytes)
-
+4.What is the size of int and it’s value range
+cout<<sizeof(int);
+ans = 4 (in bytes);
 cout<<INT_MAX<<" to"<<INT_MIN;
 range  = 2147483647 to  -2147483648
 -(2^16 - 1)   to   (2^16 - 1)
 As int has 4 bytes so 4*8 = 32bits (16 for +ve values and 16 for -ve values) 
 
 
-•	Change previously defined structure and define unsigned int of 16, 32 and 64 bits
+5.Change previously defined structure and define unsigned int of 16, 32 and 64 bits
 struct temp{
     uint_16 a;
     unit_32 b;
     uint_64 c;
 } temporary1, temporary2;
 
-•	Does the order of their declaration matter?
-•	What is the size of above structure?
+
+
+6.Does the order of their declaration matter?
+7.What is the size of above structure?
 Ans to both the question can be explained with the help of padding and packing concepts 
 Below links can be helpful for better understading
 https://www.youtube.com/watch?v=QSuBwGmFQqA
-
 https://stackoverflow.com/questions/7970383/extra-bytes-when-declaring-a-member-of-a-ssssstruct-as-uint32-t
 https://stackoverflow.com/questions/119123/why-isnt-sizeof-for-a-struct-equal-to-the-sum-of-sizeof-of-each-member
-
 However for this specific case answer is 16 bytes for all orders coincidentally!!
 
-•	What exactly the the sizeof does
+
+8.What exactly the the sizeof does
 It’s used to get the size of classes, structures, data variables and other user defined data types.
 When sizeof is applied on the array type then it gives the size in terms of bytes occupied by the 
-Array in the memory. However when an pointer to the array is passes it will give the sizeof the pointer which is of 4 bytes in general machine and C language.
+Array in the memory. However when an pointer to the array is passes it will give the size of the pointer which is of 4 bytes in general machine and C language.
 
 
-•	sizeof is an operator or function
+
+9.sizeof is an operator or function
 according to C++11 standards the sizeof is an operator more detailed explanation can 
 be fond here:
 https://stackoverflow.com/questions/1393582/why-is-sizeof-considered-an-operator
 
 
 
-•	Explain the operation of memcpy 
+10.Explain the operation of memcpy 
 memcpy takes 3 parameters memcpy(void *dest, void * src, size_t num)
 it takes the pointer to the memory of any object they are irrelevant and copy the  num bytes values from src to dest. The binary copy of data is maintained. If the objects overlap or either of them is null in that case the behavior is undefined, even if count is zero.
 
 
+11.write a function to swap two numbers without using third variable
+void swap(int a, int b)
+{
+	a = a+b;
+	b = a-b;
+	a = a-b;
+}
+
+12.This won't change thier values in the main function call
+pass the address of the variables so changes woul be relflecting in main also
+void swap(int *a, int *b)
+{
+	*a = *a + *b;
+	*b = *a - *b;
+	*a = *a - *b;
+}
+
+13.Does it really work for values a and b
+As we are adding two int so when maximum value of int would be passed there can be integer overflow but I tried the following and output is fine even with max limits
+
+void swap(int *a, int *b)
+{
+	*a = *a + *b;
+	cout<<(*a)<<endl;
+	*b = *a - *b;
+	cout<<(*b)<<endl;
+	*a = *a - *b;
+	cout<<(*a)<<endl;
+}
+
+int main()
+{
+    int a = INT_MAX;
+    int b = INT_MAX;
+    swap(&a,&b);
+    cout<<a<<" "<<b;
+    return 0;
+}
+Output:-2 //overflow can be seen here 
+2147483647                                                                                                      2147483647                                                                                                      2147483647 2147483647  //but output is right
+
+
+14.Can we made above function more generic to work with anytype of datatype
+No it's not possible even you would use typcasting tha values of may get distorted
+
+
+15.What is the typecasting 
+Typecasting, or type conversion, is a method of changing an entity from one data type to another. It is used in computer programming to ensure variables are correctly processed by a function.
 
 
 
+16.Can pointer be typecasted , is it safe?
+Any pointer type can be safely type cast into void and from void back to the original one. Any other data pointer cast leads to undefined behavior when indirection is performed on the pointer. Basically pointers are nothing but just the address of the first byte of your data. The type of data determines how many bites are going to be reserved after first byte. The behaviour of void is really undefined when it's used to access data. Same can be case with typecasting one from other.
 
 
 
+17.What is macro 
+The C preprocessor is a macro preprocessor (allows you to define macros) that transforms your program before it is compiled. These transformations can be inclusion of header file, macro expansions etc.All preprocessing directives begins with a # symbol.You can define a macro in C using #define preprocessor directive.A macro is a fragment of code that is given a name. You can use that fragment of code in your program by using the name.Even keywords can be used to define macros as the replacement of the code happens in the preprocessing stage compiler does not know anything about it.
 
+
+18.Output of the following program
+#define square(n) n*n
+
+main()
+{
+	int n=5;
+	int temp = square(n)/square(n);
+	cout<<temp;
+}
+ans would be 25 as after preprocessing compiler will look at the code like this
+temp = 5*5/5*5;
+now since "/" has precedence over "*" so first 5/5 will be evaluated
+temp = 5*1*5
+and temp = 25
+
+
+
+19.What is the differece between inline and macros
+Inline functions are those functions whose definition is small and can be substituted at the place where its function call is made. Basically they are inlined with its function call.
+Even there is no guarantee that the function will actually be inlined. Compiler interprets the inline keyword as a mere hint or request to substitute the code of function into its function call. Usually people say that having an inline function increases performance by saving time of function call overhead (i.e. passing arguments variables, return address, return value, stack mantle and its dismantle, etc.) but whether an inline function serves your purpose in a positive or in a negative way depends purely on your code design and is largely debatable.
+Compiler does inlining for performing optimizations. If compiler optimization has been disabled, then inline functions would not serve their purpose and their function call would not be replaced by their function definition.
+Inline functions provides following advantages over macros.
+Since they are functions so type of arguments is checked by the compiler whether they are correct or not.
+There is no risk if called multiple times. But there is risk in macros which can be dangerous when the argument is an expression.
+They can include multiple lines of code without trailing backlashes.
+Inline functions have their own scope for variables and they can return a value.
+Debugging code is easy in case of Inline functions as compared to macros.
+It is a common misconception that inlining always equals faster code. If there are many lines in inline function or there are more function calls, then inlining can cause wastage of space.
+
+
+20.What does the cost keyword does
+When modifying a data declaration, the const keyword specifies that the object or variable is not modifiable. Once a data variable has been defined as cons compiler prevents the programmer to change it's value.You can use pointers to constant data as function parameters to prevent the function from modifying a parameter passed through a pointer.For objects that are declared as const, you can only call constant member functions. This ensures that the constant object is never modified.You can call either constant or nonconstant member functions for a nonconstant object. You can also overload a member function using the const keyword; this allows a different version of the function to be called for constant and nonconstant objects.You cannot declare constructors or destructors with the const keyword.
+
+
+
+21.What is const function
+const qualifier can also be applied to member functions, member function arguments and the objects of a class.
+When a function is defined using const keyword then compiler prevents them to modify the objects on which they are applied. 
