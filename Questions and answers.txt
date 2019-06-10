@@ -174,18 +174,18 @@ largely debatable.
 Compiler does inlining for performing optimizations. If compiler optimization has been disabled, then inline 
 functions would not serve their purpose and their function call would not be replaced by their function 
 definition.
-Inline functions provides following advantages over macros.
-Since they are functions so type of arguments is checked by the compiler whether they are correct or not.
-There is no risk if called multiple times. But there is risk in macros which can be dangerous when the argument 
-is an expression.
-They can include multiple lines of code without trailing backlashes.
-Inline functions have their own scope for variables and they can return a value.
-Debugging code is easy in case of Inline functions as compared to macros.
-It is a common misconception that inlining always equals faster code. If there are many lines in inline 
-function or there are more function calls, then inlining can cause wastage of space.
+Inline functions provides following advantages over macros :-
+*Since they are functions so type of arguments is checked by the compiler whether they are correct or not.
+*There is no risk if called multiple times. But there is risk in macros which can be dangerous when the argument 
+ is an expression.
+*They can include multiple lines of code without trailing backlashes.
+*Inline functions have their own scope for variables and they can return a value.
+*Debugging code is easy in case of Inline functions as compared to macros.
+*It is a common misconception that inlining always equals faster code. If there are many lines in inline 
+*function or there are more function calls, then inlining can cause wastage of space.
 
 
-20.What does the cost keyword does
+20.What does the cost keyword does?
 When modifying a data declaration, the const keyword specifies that the object or variable is not modifiable. 
 Once a data variable has been defined as cons compiler prevents the programmer to change it's value.You can use 
 pointers to constant data as function parameters to prevent the function from modifying a parameter passed 
@@ -193,11 +193,67 @@ through a pointer.For objects that are declared as const, you can only call cons
 ensures that the constant object is never modified.You can call either constant or nonconstant member functions 
 for a nonconstant object. You can also overload a member function using the const keyword; this allows a 
 different version of the function to be called for constant and nonconstant objects.You cannot declare 
-constructors or destructors with the const keyword.
+constructors or destructors with the const keyword. const variable must be initialize at the time of declartion.
 
 
 
-21.What is const function
+21.What is const function?
 const qualifier can also be applied to member functions, member function arguments and the objects of a class.
-When a function is defined using const keyword then compiler prevents them to modify the objects on which they 
-are applied. 
+When a function is defined using const keyword then compiler prevents them to modify the objects on which they are applied.
+A const function can be called on any type of object wherease a non const function can be called ony by using a non const object.
+A const member function cannot change the value of any data member of the class and cannot call any member function which is not
+constant.
+
+
+22.What if a non member function is defines as const?
+There no use of doing so as this wouldn't actually do the work what is desired neverthless if it's defined as const then a non member
+function's return type becomes const and you can't make changes to the object returned by this. LEt us take an example
+
+const string show()
+{
+  return "show";
+}
+int main()
+{
+cout<<show(); //output will be show
+show().earse("o"); //this will throw a compiler error as we are trying to modify a const string retunred  from show() function
+return 0;
+}
+
+
+
+23.What does the static keyword does?
+Similar to the const static keyword can also be applied to the member function, function arguments and objects of the class.However it's
+functionality is totaly different. Whenever compiler see the static keyword the applying object gets it memory allocated from dynamic
+memory section i.e. heap and it maintains there through out the life of the program. The memory is allocated only once irrespective of
+the calls made on these objects and they retain there values througout the program life.
+
+Once the variable has been initialized, it remains in memory until the end of the program. One feature of using a static keyword is that
+it happens to be initialized to zero automatically. The static variables got initialized only once. And once did so it maintains it's
+value throughout the function calls. Similary when a data member inside the class gets static defination it maintains only a single copy 
+of that variable irrespective of the objects or instance created. Static member variables (data members) are not initialied using
+constructor, because these are not dependent on object initialization. Also, it must be initialized explicitly, always outside the
+class. If not initialized, Linker will give error.
+
+Similar to variables member functions can also be defined as static.These functions cannot access ordinary data members and member
+functions, but only static data members and static member functions. Use static functions when they don't depend on any class members.
+They can still be private, but this way they are optimized as they don't depend on any instance of the related object.static functions
+are useful when you don't want to create an instance of an object just to execute one public function on it. This is mainly the case for
+helper classes that contain public functions to do some repetitive and general work, but don't need to maintain any state between calls.
+
+Static keyword works in the same way for class objects too. Objects declared static are allocated storage in static storage area, and
+have scope till the end of program.
+
+
+Difference between global and static keyword?
+A static variable can be defined inside a function or outside all the functions and doing so would make its scope global. Static
+variables have scope depeding upon the place where they have been defined, although static member keeps remain alive in the storage 
+through the program life retaining their value you can access the variable only where it's scope is allowed. A global variable have
+diiferent storage and are stored in Data Segment of process. Global variable’s life is until the life of program and it can be accessed by other files using extern keyword wherease static variables are not accessible by other files using extern keywords.
+
+
+What is  ASCII and its use?
+Short for American Standard Code for Information Interexchange, ASCII is a standard that assigns letters, numbers, and other characters
+in the 256 slots available in the 8-bit code. The ASCII decimal (Dec) number is created from binary, which is the language of all
+computers. As shown in the table below, the lowercase "h" character (Char) has a decimal value of 104, which is "01101000" in binary.
+As computer understand only binary at high level so first all the values is converted in binary using this table and computation is done. 
