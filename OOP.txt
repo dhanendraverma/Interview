@@ -1,2 +1,5 @@
-
+1.When we want to initialize the data member variables or want to pass some variables at the time of class instantiation using a
+paramterized are good option. However whenever a constructor is overridden there must be a defination of default constrctor. So when you
+have not defined any default constrctor and try to pass parameters to derived class as well as you want to invoke the base class
+parameterized constructor so must call it explicitly along with the dervied class constructor.
 https://stackoverflow.com/questions/7810253/why-the-constructor-for-a-base-class-needs-to-be-called-in-the-initializer-list
