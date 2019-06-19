@@ -118,7 +118,16 @@ Output:-2 //overflow can be seen here
 
 
 14.Can we made above function more generic to work with anytype of datatype
-No it's not possible even you would use typcasting tha values of may get distorted
+ye we can use generics in c++ template. Generics are the idea which allows the type of data to be passed to a function. In this manner
+you can pass data type along with your data in your function. This increases the reusability of the code.
+template <typename T> 
+T swap(T a, T b) 
+{
+  a = a+b;
+  b = a-b;
+  a = a-b;
+} 
+  
 
 
 15.What is the typecasting 
