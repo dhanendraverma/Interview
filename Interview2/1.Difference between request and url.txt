@@ -1,0 +1,12 @@
+1.Difference between request and url
+2.What is API
+3.how to insert data from API request to DB
+4.Difference between with and for
+5.What is list and dictionnary
+6.What is tupple
+7.Can we add list to the tupple
+8.Packages you have used
+9.What is url
+10.RESTful api
+11.How to open a directory and subdir files
+12.What is MRO
