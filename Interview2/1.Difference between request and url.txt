@@ -10,3 +10,6 @@
 10.RESTful api
 11.How to open a directory and subdir files
 12.What is MRO
+13.What obejcts types can be used as key in dict
+14.find all the elements which are there in a list but not in other.
+15.you have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the ordered according to the 1oth element of list 
