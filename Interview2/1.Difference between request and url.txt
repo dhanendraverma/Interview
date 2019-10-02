@@ -1,10 +1,48 @@
-1.Difference between request and url
+1.Can we add list to the tupple?
+Yes we can absoultely add list to the tuple, infact any data type being mutable or non mutable can be added to the tuple. The most trickiest part is altough tuples are immutable in python you can add mutable contents to inside it.Let's see a example:
+>>> tpl = ([23,4],[4,5]) #created a tuple of lists(mutable object)
+>>> tpl
+([23, 4], [4, 5])
+>>> tpl[0][0] = 4 #See we can even change the value of mutable object
+>>> tpl
+([4, 4], [4, 5])
+but when you try to do
+>>> tpl[0] = [2,5]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+this assignment fails because tuples are immutable and hence there is not any defined method to change it's contents, however in former case we were refering to the list object which obviously is mutable object and the operation was successful. The reason why mutable contents inside tuples can be chnaged is tuples have no way of knowing whether the objects inside them are mutable. Infact we talk in very high level then python containers doesn't actually contain  anything.Instead, they keep references to other objects andin the first case when we typed out tpl[0][0] we were refering to the list object which has well defined methods to alter it's contents, now comes the GOTCHA moment 
+>>> tpl = ([1,6,7])
+>>> tpl
+[1, 6, 7]
+>>> tpl[0][1]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not subscriptable
+>>> tpl[0]
+1
+>>> tpl[0] = 5
+>>> tpl
+[5, 6, 7]
+>>>
+when you have a single list you must treat the tuple as one dimensional container and now also you can change the elements inside that single list, but waite story doesn't end here! now see another case
+>>> lst = [3,5,6]
+>>> tpl = tuple(lst)
+>>> tpl[0] = 9
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+the reason of this strange behaviour can be explained with below line:
+>>> tpl
+(3, 5, 6)
+we can see the values of the list elements are now the elements of tuple so now tuple is no more referring to the list object likewise we saw in the above two examples it has its own elements from the list and since tuple doesn't allow assignment it throws exception.
+
 2.What is API
 3.how to insert data from API request to DB
 4.Difference between with and for
 5.What is list and dictionnary
 6.What is tupple
-7.Can we add list to the tupple
+7.Difference between request and url
 8.Packages you have used
 9.What is url
 10.RESTful api
