@@ -66,6 +66,22 @@ and for the vise-versa
 print(list(set(B)-set(A)))
 ----------------------------------------------------------------------------------------------------------------------------------------
 
+4.How to get the list of all the files in a folder?
+We can make use of os module in python
+os.listdir(path) function returns a list containing the names of the entries in the directory given by path. The list is in arbitrary 
+order. It does not include the special entries '.' and '..' even if they are present in the directory.
+Now in order to filter out only files from the list again we can use os module methods
+os.path.isfile(path) returns True if path is an existing regular file.
+onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+We can also use os.walk(path) method  which will yield two lists for each directory it visits - splitting into files and dirs for you. 
+If you only want the top directory you can just break the first time it yields.
+from os import walk
+f = []
+for (dirpath, dirnames, filenames) in walk(mypath):
+    f.extend(filenames)
+    break
+----------------------------------------------------------------------------------------------------------------------------------------
+
 3.how to insert data from API request to DB
 4.What is API
 5.What is list and dictionnary
@@ -74,8 +90,9 @@ print(list(set(B)-set(A)))
 8.Packages you have used
 9.What is url
 10.RESTful api
-11.How to open a directory and subdir files
+
 12.What is MRO
 13.What obejcts types can be used as key in dict
 14.find all the elements which are there in a list but not in other.
-15.you have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the ordered according to the 1oth element of list 
+15.you have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the ordered 
+according to the 1oth element of list 
