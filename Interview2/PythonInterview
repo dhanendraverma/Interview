@@ -81,7 +81,7 @@ for (dirpath, dirnames, filenames) in walk(mypath):
     f.extend(filenames)
     break
 ----------------------------------------------------------------------------------------------------------------------------------------
-
+Difference between extend and appned in python list
 3.how to insert data from API request to DB
 4.What is API
 5.What is list and dictionnary
