@@ -1,5 +1,6 @@
 1.Can we add list to the tupple?
-Yes we can absoultely add list to the tuple, infact any data type being mutable or non mutable can be added to the tuple. The most trickiest part is altough tuples are immutable in python you can add mutable contents to inside it.Let's see a example:
+Yes we can absoultely add list to the tuple, infact any data type being mutable or non mutable can be added to the tuple.The most 
+trickiest part is altough tuples are immutable in python you can add mutable contents to inside it.Let's see a example:
 >>> tpl = ([23,4],[4,5]) #created a tuple of lists(mutable object)
 >>> tpl
 ([23, 4], [4, 5])
@@ -11,7 +12,12 @@ but when you try to do
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'tuple' object does not support item assignment
-this assignment fails because tuples are immutable and hence there is not any defined method to change it's contents, however in former case we were refering to the list object which obviously is mutable object and the operation was successful. The reason why mutable contents inside tuples can be chnaged is tuples have no way of knowing whether the objects inside them are mutable. Infact we talk in very high level then python containers doesn't actually contain  anything.Instead, they keep references to other objects andin the first case when we typed out tpl[0][0] we were refering to the list object which has well defined methods to alter it's contents, now comes the GOTCHA moment 
+this assignment fails because tuples are immutable and hence there is not any defined method to change it's contents, however in former
+case we were refering to the list object which obviously is mutable object and the operation was successful. The reason why mutable 
+contents inside tuples can be chnaged is tuples have no way of knowing whether the objects inside them are mutable. Infact we talk in 
+very high level then python containers doesn't actually contain  anything.Instead, they keep references to other objects andin the 
+first case when we typed out tpl[0][0] we were refering to the list object which has well defined methods to alter it's contents,
+now comes the GOTCHA moment:
 >>> tpl = ([1,6,7])
 >>> tpl
 [1, 6, 7]
@@ -39,11 +45,26 @@ we can see the values of the list elements are now the elements of tuple so now 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 2.Added advantages of with keyword?
-Python's with statement supports the concept of a runtime context defined by a context manager. This is implemented using two separate methods(__enter__(	) and __exit__(	exc_type, exc_val, exc_tb)) that allow user-defined classes to define a runtime context that is entered before the statement body is executed and exited when the statement ends.For instance, the open statement is a context manager in itself, which lets you open a file, keep it open as long as the execution is in the context of the with statement where you used it, and close it as soon as you leave the context, no matter whether you have left it because of an exception or during regular control flow.This allows common try...except...finally usage patterns to be encapsulated for convenient reuse.The with statement can thus be used in ways similar to the RAII(Resource Acquisition Is Initialization) pattern in C++: some resource is acquired by the with statement and released when you leave the with context.It is intended to allow safe acquisition and release of operating system resources. The with statement creates resources within a scope/block. You write your code using the resources within the block. When the block exits the resources are cleanly released regardless of the outcome of the code in the block (that is whether the block exits normally or because of an exception).
+Python's with statement supports the concept of a runtime context defined by a context manager. This is implemented using two separate 
+methods(__enter__(	) and __exit__(	exc_type, exc_val, exc_tb)) that allow user-defined classes to define a runtime context that is 
+entered before the statement body is executed and exited when the statement ends.For instance, the open statement is a context manager 
+in itself, which lets you open a file, keep it open as long as the execution is in the context of the with statement where you used it, 
+and close it as soon as you leave the context, no matter whether you have left it because of an exception or during regular control flow.
+This allows common try...except...finally usage patterns to be encapsulated for convenient reuse.The with statement can thus be used in 
+ways similar to the RAII(Resource Acquisition Is Initialization) pattern in C++: some resource is acquired by the with statement and 
+released when you leave the with context.It is intended to allow safe acquisition and release of operating system resources. The with
+statement creates resources within a scope/block. You write your code using the resources within the block. When the block exits the 
+resources are cleanly released regardless of the outcome of the code in the block (that is whether the block exits normally or because
+of an exception).
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 3.find all the elements which are there in a list but not in other.
-
+Let's assume our first list is A and second is B, 
+then elements which are present in A but not in B 
+print(list(set(A)-set(B)))
+and for the vise-versa
+print(list(set(B)-set(A)))
+----------------------------------------------------------------------------------------------------------------------------------------
 
 3.how to insert data from API request to DB
 4.What is API
