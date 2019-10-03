@@ -81,7 +81,14 @@ for (dirpath, dirnames, filenames) in walk(mypath):
     f.extend(filenames)
     break
 ----------------------------------------------------------------------------------------------------------------------------------------
-Difference between extend and appned in python list
+
+5.Difference between extend and appned in python list?
+append adds an element to a list, and extend concatenates the first list with another list (or another iterable, not necessarily a list)
+if you pass a sequence in extend the elements of the sequece will be addedas individual element of list wherease if append will be used 
+then whole sequece object will be added as single element in list.
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
 3.how to insert data from API request to DB
 4.What is API
 5.What is list and dictionnary
