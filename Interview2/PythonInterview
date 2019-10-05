@@ -90,6 +90,37 @@ if you pass a sequence in extend the elements of the sequece will be addedas ind
 then whole sequece object will be added as single element in list.
 ----------------------------------------------------------------------------------------------------------------------------------------
 
+6.What is MRO
+MRO or method resolution order, is class serach path used by python to search for the right method to use in classes having multiple 
+inheritence. In simple there is a class which has been inherited from the multiple classes and those classes are further inherited from 
+from other classes then MRO defines the order in which a method invoked will be searched among these classes. Since old python has old 
+style of class implementation and new one has new hence MRO also has two of doing things. In new style classes defination they have to 
+use metaclass/root object.Old style classes use DLR(depth first left to right) algorithm, in this algorithm when any mehtod will envoked
+it will first look into class itslef, and them if it doesn't find it in class then it will start looking into the parent classes 
+starting from the left side but when it tries to find in any superclass it will further dig into the parent classes from which your 
+current superclasse has been inherited, if it reaches the highest point in the hierarchy and doesn't find the class then it will look in
+the next class in the order which would be to the right side of the current class in the lower level.The problem with this algorithm
+was that it was consistence and monotonic when you have two different classes which being inherited from the same superclasses then 
+order in which they have been used in the two subclasses may cause issue if don't maintain same order in defination of the two 
+subclasses. The new style class(from python 2.3) uses C3 linearization algorithm to solve the problem with old algorithm. The 
+linearization of any class c has been defined as the list of ancestors of class C, including class itself, orderd from the nearest 
+ancestors to the furthest. Linerization of C is sum of C plus the merge of the linearizations of the parents and the list of the 
+parents. 
+L[C(B1,B2......BN)] = merge(L[B1]......L[B2],B1.....BN)
+merge : 1.Take the head of the first list, i.e L[B1][0]
+        2.If this head is not in the tail of any of the other lists, then add it to the linearization of C and remove it from the
+        lists in the merge
+        3.Otherwise look at the head of the next list and take it, if it is a good head. Then repeat the operation until all the 
+        classes are removed or it is impossible to find good heads.
+                                                          
+                                                          
+                                                          
+        
+        
+      
+
+
+
 
 3.how to insert data from API request to DB
 4.What is API
@@ -100,7 +131,7 @@ then whole sequece object will be added as single element in list.
 9.What is url
 10.RESTful api
 
-12.What is MRO
+12.
 13.What obejcts types can be used as key in dict
 14.find all the elements which are there in a list but not in other.
 15.you have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the ordered 
