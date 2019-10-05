@@ -113,11 +113,28 @@ merge : 1.Take the head of the first list, i.e L[B1][0]
         3.Otherwise look at the head of the next list and take it, if it is a good head. Then repeat the operation until all the 
         classes are removed or it is impossible to find good heads.
                                                           
+                                                       O
+                                                    /  |   \  
+                                                  /    |    \    
+                                                 /     |     \
+                                                F      D      E        
+                                                  \    /\    /
+                                                   \  /  \  /
+                                                     C    B    
+                                                      \  /     
+                                                        A
                                                           
-                                                          
-        
-        
-      
+                  L[O] =  O
+                  L[D] =  D O
+                  L[E] =  E O
+                  L[F] =  F O
+                  
+                  L[B] = B + merge(L(D), L(E), DE)
+                  L[B] = B + merge(DO,EO,DE)
+                  L[B] = B + D + merge(O,EO,E)  
+                  L[B] = B + D + E + merge(O,O)
+                  L[B] = B + D + E + O
+                    
 
 
 
