@@ -175,6 +175,28 @@ or __eq__.
 object's attributes.
 ---------------------------------------------------------------------------------------------------------------------------------------
 
+8.You have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the ordered 
+according to the 10th element of list.
+The key argument of the sorted function lets you derive a sorting key for each element of the list.Starting with Python 2.4, both
+list.sort() and sorted() added a key parameter to specify a function to be called on each list element prior to making comparisons.
+The value of the key parameter should be a function that takes a single argument and returns a key to use for sorting purposes. This 
+technique is fast because the key function is called exactly once for each input record.
+>>> myDict = {'first': [3,5,6,7,4,6,7,8,9,100,3,3], 'second':[4,5,6,7,24,6,4,3,7,45,3,2,4], 'third':[5,6,24,54,5,67,4,2,2,4,5,6,]}
+>>> sorted(myDict.items(), key=lambda e: e[1][9])
+[('third', [5, 6, 24, 54, 5, 67, 4, 2, 2, 4, 5, 6]), ('second', [4, 5, 6, 7, 24, 6, 4, 3, 7, 45, 3, 2, 4]), 
+('first', [3, 5, 6, 7, 4, 6, 7, 8, 9, 100, 3, 3])]
+
+The preferred Python pattern (idiom) for sorting by any alternative criterium is called "decorate-sort-undecorate" (DSU). 
+In this idiom you create a temporary list which contains tuples of your key(s) followed by your original data elements, then call the 
+normal .sort() method on that list (or, in more recent versions of Python simply wrap your decoration in a called to the sorted() 
+built-in function). Then you remove the "decorations."
+>>[y[1] for y in sorted([(myDict[x][2], x) for x in myDict.keys()])]
+The reason this is generally preferred over passing comparison function to the .sort() method is that Python's built-in default sorting
+code (compiled C in the normal C Python) is very fast and efficient in the default case, but much, much slower when it has to call
+Python object code many, many times in the non-default case. So it's usually far better to iterate over the data creating data 
+structures which can be passed to the default sort routines.
+
+
 3.how to insert data from API request to DB
 4.What is API
 5.What is list and dictionnary
@@ -184,8 +206,3 @@ object's attributes.
 9.What is url
 10.RESTful api
 
-
-
-
-15.you have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the ordered 
-according to the 1oth element of list 
