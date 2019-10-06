@@ -134,9 +134,31 @@ merge : 1.Take the head of the first list, i.e L[B1][0]
                   L[B] = B + D + merge(O,EO,E)  
                   L[B] = B + D + E + merge(O,O)
                   L[B] = B + D + E + O
+                  
+---------------------------------------------------------------------------------------------------------------------------------------
                     
-
-
+7.What type of objects can be used as key in dict?
+Inorder to answer this question let's start with the uderstanding of how python dictionaries work/ Dictionary in python is also known as
+mapping beacuse they map the key objects to the value objects.One way achieving this would be storing (key,value) pairs and and then 
+search the list sequentially every time a value was requested.However this would take much time for large number of entries as time
+complexity would be O(n) to search linearly.Python's dictionary implementation reduces the average complexity of dictionary lookups 
+to O(1) by requiring that key objects provide a "hash" function.Such a hash function takes the information in a key object and uses it 
+to produce an integer, called a hash value.This hash value then determines in which bucket this pair should be placed.When any key is
+used to get the value first correct bucket is found then it's searched sequentially.For such a lookup algorithm to work correctly, 
+the hash functions provided must guarantee that if two keys produce different hash values then the two key objects are not equivalent.
+Otherwise, checking the hash value of a key object might make us look in the wrong bucket and thus never find the associated value.
+Morover for such a lookup algorithm to work efficiently, most buckets should have only a small number of items (preferably only one).
+Hash functions that can approximate this property well will distribute (key, value) pairs evenly across the buckets, and keep lookup 
+time down.
+                                               From above explaination it's clear that To be used as a dictionary key, an object must 
+support the hash function (e.g. through __hash__), equality comparison (e.g. through __eq__ or __cmp__), and must satisfy the 
+correctness condition above. Having said that "list" is automatically out of race.f lists hashed by id, this would certainly be valid 
+given Python's definition of a hash function -- lists with different hash values would have different ids. But lists are containers, 
+and most other operations on them deal with them as such. So hashing lists by their id instead would produce unexpected behavior 
+such as:
+*Looking up different lists with the same contents would produce different results, even though comparing lists with the same contents
+would indicate them as equivalent.
+*Using a list literal in a dictionary lookup would be pointless -- it would always produce a KeyError.
 
 
 3.how to insert data from API request to DB
@@ -148,8 +170,8 @@ merge : 1.Take the head of the first list, i.e L[B1][0]
 9.What is url
 10.RESTful api
 
-12.
-13.What obejcts types can be used as key in dict
-14.find all the elements which are there in a list but not in other.
+
+
+
 15.you have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the ordered 
 according to the 1oth element of list 
