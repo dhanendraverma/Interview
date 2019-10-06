@@ -195,6 +195,24 @@ The reason this is generally preferred over passing comparison function to the .
 code (compiled C in the normal C Python) is very fast and efficient in the default case, but much, much slower when it has to call
 Python object code many, many times in the non-default case. So it's usually far better to iterate over the data creating data 
 structures which can be passed to the default sort routines.
+----------------------------------------------------------------------------------------------------------------------------------------
+
+9.Whate are decorators?
+Decorators are just a pythonic variant of the decorator design pattern. Assume that you have defined a function and you really don't 
+want to change the function or you just have access to call the function but not the source to it so you can modify it in such case the
+decorators becomes really useful.As we know that everything is object in python and so does function so we can assign the function to a 
+another container, return a function from another function and even we can define a function inside a function, however it's scope will
+be inside the function only you can't call it outside.Niw coming back to the decorators part if we want to perform some operation before
+and/or after a function is called and we can't modify the function we can simply pass this function as parameter inside another function
+where we can write the desired code run the function wherever we want and we can return return this function and excute later on.E.g.
+>>a_stand_alone_function = my_shiny_new_decorator(a_stand_alone_function)
+>>a_stand_alone_function()
+but there is more pythonic way of doing this 
+@my_shiny_new_decorator
+def another_stand_alone_function():
+    print 'Leave me alone'
+>>another_stand_alone_function() 
+
 
 
 3.how to insert data from API request to DB
