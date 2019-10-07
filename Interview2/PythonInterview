@@ -197,7 +197,7 @@ Python object code many, many times in the non-default case. So it's usually far
 structures which can be passed to the default sort routines.
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-9.Whate are decorators?
+9.Whate are decorators, how to use decorators with arguments?
 Decorators are just a pythonic variant of the decorator design pattern. Assume that you have defined a function and you really don't 
 want to change the function or you just have access to call the function but not the source to it so you can modify it in such case the
 decorators becomes really useful.As we know that everything is object in python and so does function so we can assign the function to a 
@@ -212,6 +212,26 @@ but there is more pythonic way of doing this
 def another_stand_alone_function():
     print 'Leave me alone'
 >>another_stand_alone_function() 
+Now comes the second part of the question, the syntax for decorators with arguments is a bit different - the decorator with arguments 
+should return a function that will take a function and return another function. So it should really return a normal decorator. A bit
+confusing, right? What I mean is:
+def decorator_with_argument(argument):
+    def my_shiny_new_decorator(function):
+        def wrapper(*args, **kwargs):
+            funny_stuff()
+            something_with_argument(argument)
+            result = function(*args, **kwargs)
+            more_funny_stuff()
+            return result
+        return wrapper
+    return my_shiny_new_decorator
+you can see we have just added another level in function decoration with accepts the arguments and now those arguments can be used
+anywhere inside your function to make decorator more useful.
+Now using this would also be easy we just have to use outermost decorator name with the desired argument passed.
+@decorator_with_argument(myargument)
+def another_stand_alone_function(a,b):
+    print 'Leave me alone'+a+b
+
 
 
 
