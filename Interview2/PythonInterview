@@ -243,4 +243,4 @@ def another_stand_alone_function(a,b):
 8.Packages you have used
 9.What is url
 10.RESTful api
-
+why strings are immutable in python?
