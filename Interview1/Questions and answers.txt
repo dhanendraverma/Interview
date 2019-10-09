@@ -266,3 +266,5 @@ Short for American Standard Code for Information Interexchange, ASCII is a stand
 in the 256 slots available in the 8-bit code. The ASCII decimal (Dec) number is created from binary, which is the language of all
 computers. As shown in the table below, the lowercase "h" character (Char) has a decimal value of 104, which is "01101000" in binary.
 As computer understand only binary at high level so first all the values is converted in binary using this table and computation is done. 
+
+What data types can be used in switch case?
