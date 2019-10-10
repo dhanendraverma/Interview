@@ -3,3 +3,5 @@ paramterized are good option. However whenever a constructor is overridden there
 have not defined any default constrctor and try to pass parameters to derived class as well as you want to invoke the base class
 parameterized constructor so must call it explicitly along with the dervied class constructor.
 https://stackoverflow.com/questions/7810253/why-the-constructor-for-a-base-class-needs-to-be-called-in-the-initializer-list
+
+2.How many constructors are possible in a single class?
