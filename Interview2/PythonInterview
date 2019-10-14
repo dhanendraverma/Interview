@@ -231,8 +231,13 @@ Now using this would also be easy we just have to use outermost decorator name w
 @decorator_with_argument(myargument)
 def another_stand_alone_function(a,b):
     print 'Leave me alone'+a+b
+----------------------------------------------------------------------------------------------------------------------------------------
 
-
+10.Strings are mutable or immutalbe?justify your answer.
+Python strings are immatable. However still you can perform some operations like replace, split but evey time a new string is formed 
+old one is not changed. The reason behind this is, all the things are objects in python. As we know with any object only those methods 
+are allowed which have defined in the scope of the class so you can't really call methods on the objects of this class type, same is the
+case with the opertors you can use operators which have not been overloaded or defined inside class defination.
 
 
 3.how to insert data from API request to DB
