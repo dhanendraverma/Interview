@@ -238,7 +238,11 @@ Python strings are immatable. However still you can perform some operations like
 old one is not changed. The reason behind this is, all the things are objects in python. As we know with any object only those methods 
 are allowed which have defined in the scope of the class so you can't really call methods on the objects of this class type, same is the
 case with the opertors you can use operators which have not been overloaded or defined inside class defination.
+----------------------------------------------------------------------------------------------------------------------------------------
 
+11.What is the command to debug python program?
+python -m pdb filename.py
+for next line press n
 
 3.how to insert data from API request to DB
 4.What is API
