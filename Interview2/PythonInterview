@@ -243,7 +243,13 @@ case with the opertors you can use operators which have not been overloaded or d
 11.What is the command to debug python program?
 python -m pdb filename.py
 for next line press n
+----------------------------------------------------------------------------------------------------------------------------------------
 
+
+12.What is a "callable"?
+A callable is an object we can call - function or an object implementing the __call__ special method. Any object can be made callable.
+
+12.How to copy objects in python?What's the differece between shallow and deep copy?
 3.how to insert data from API request to DB
 4.What is API
 5.What is list and dictionnary
