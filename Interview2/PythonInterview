@@ -249,7 +249,10 @@ for next line press n
 12.What is a "callable"?
 A callable is an object we can call - function or an object implementing the __call__ special method. Any object can be made callable.
 
-12.How to copy objects in python?What's the differece between shallow and deep copy?
+13.How to copy objects in python?What's the differece between shallow and deep copy?
+
+14.What is delegation in python?
+
 3.how to insert data from API request to DB
 4.What is API
 5.What is list and dictionnary
