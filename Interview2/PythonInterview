@@ -1,6 +1,6 @@
 1.Can we add list to the tupple?
-Yes we can absoultely add list to the tuple, infact any data type being mutable or non mutable can be added to the tuple.The most 
-trickiest part is altough tuples are immutable in python you can add mutable contents to inside it.Let's see a example:
+Yes we can absoultely add list to the tuple, infact any data type being mutable or non mutable can be added to the tuple.The 
+most trickiest part is altough tuples are immutable in python you can add mutable contents to inside it.Let's see a example:
 >>> tpl = ([23,4],[4,5]) #created a tuple of lists(mutable object)
 >>> tpl
 ([23, 4], [4, 5])
@@ -12,11 +12,12 @@ but when you try to do
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'tuple' object does not support item assignment
-this assignment fails because tuples are immutable and hence there is not any defined method to change it's contents, however in former
-case we were refering to the list object which obviously is mutable object and the operation was successful. The reason why mutable 
-contents inside tuples can be chnaged is tuples have no way of knowing whether the objects inside them are mutable. Infact we talk in 
-very high level then python containers doesn't actually contain  anything.Instead, they keep references to other objects andin the 
-first case when we typed out tpl[0][0] we were refering to the list object which has well defined methods to alter it's contents,
+this assignment fails because tuples are immutable and hence there is not any defined method to change it's contents, however
+in former case we were refering to the list object which obviously is mutable object and the operation was successful. The 
+reason why mutable contents inside tuples can be chnaged is tuples have no way of knowing whether the objects inside them are
+mutable. Infact if we talk in very high level then python containers doesn't actually contain anything.Instead, they keep 
+references to other objects, and in the first case when we typed out tpl[0][0] we were refering to the list object which has 
+a well defined methods to alter it's contents,
 now comes the GOTCHA moment:
 >>> tpl = ([1,6,7])
 >>> tpl
@@ -31,8 +32,8 @@ TypeError: 'int' object is not subscriptable
 >>> tpl
 [5, 6, 7]
 >>>
-when you have a single list you must treat the tuple as one dimensional container and now also you can change the elements inside 
-that single list, but waite story doesn't end here! now see another case
+when you have a single list you must treat the tuple as one dimensional container and now also you can change the elements 
+inside that single list, but waite story doesn't end here! now see another case
 >>> lst = [3,5,6]
 >>> tpl = tuple(lst)
 >>> tpl[0] = 9
@@ -42,23 +43,25 @@ TypeError: 'tuple' object does not support item assignment
 the reason of this strange behaviour can be explained with below line:
 >>> tpl
 (3, 5, 6)
-we can see the values of the list elements are now the elements of tuple so now tuple is no more referring to the list object likewise 
-we saw in the above two examples it has its own elements from the list and since tuple doesn't allow assignment it throws exception.
-----------------------------------------------------------------------------------------------------------------------------------------
+we can see the values of the list elements are now the elements of tuple so now tuple is no more referring to the list object
+likewise we saw in the above two examples it has its own elements from the list and since tuple doesn't allow assignment it 
+throws exception.
+-----------------------------------------------------------------------------------------------------------------------------
 
 2.Added advantages of with keyword?
-Python's with statement supports the concept of a runtime context defined by a context manager. This is implemented using two separate 
-methods(__enter__(	) and __exit__(	exc_type, exc_val, exc_tb)) that allow user-defined classes to define a runtime context that is 
-entered before the statement body is executed and exited when the statement ends.For instance, the open statement is a context manager 
-in itself, which lets you open a file, keep it open as long as the execution is in the context of the with statement where you used it, 
-and close it as soon as you leave the context, no matter whether you have left it because of an exception or during regular control 
-flow. This allows common try...except...finally usage patterns to be encapsulated for convenient reuse.The with statement can thus be 
-used in ways similar to the RAII(Resource Acquisition Is Initialization) pattern in C++: some resource is acquired by the with statement
-and released when you leave the with context.It is intended to allow safe acquisition and release of operating system resources. The 
-with statement creates resources within a scope/block. You write your code using the resources within the block. When the block exits 
-the resources are cleanly released regardless of the outcome of the code in the block (that is whether the block exits normally or
+Python's with statement supports the concept of a runtime context defined by a context manager. This is implemented using two 
+separate methods [__enter__(	) and __exit__(	exc_type, exc_val, exc_tb)] these allow user-defined classes to define a runtime 
+context that is entered before the statement body is executed and exited when the statement ends.For instance, the open 
+statement is a context manager in itself, which lets you open a file, keep it open as long as the execution is in the context 
+of the with statement where you used it, and close it as soon as you leave the context, no matter whether you have left it 
+because of an exception or during regular control flow. This allows common try...except...finally usage patterns to be 
+encapsulated for convenient reuse.The with statement can thus be used in ways similar to the RAII(Resource Acquisition Is 
+Initialization) pattern in C++: some resource is acquired by the with statement and released when you leave the with context.
+It is intended to allow safe acquisition and release of operating system resources. The "with" statement creates resources 
+within a scope/block. You write your code using the resources within that block. When the block exits the resources are 
+cleanly released regardless of the outcome of the code in the block (that is whether the block exits normally or
 because of an exception).
-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
 
 3.find all the elements which are there in a list but not in other.
 Let's assume our first list is A and second is B, 
@@ -66,29 +69,29 @@ then elements which are present in A but not in B
 print(list(set(A)-set(B)))
 and for the vise-versa
 print(list(set(B)-set(A)))
-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
 
 4.How to get the list of all the files in a folder?
 We can make use of os module in python
-os.listdir(path) function returns a list containing the names of the entries in the directory given by path. The list is in arbitrary 
-order. It does not include the special entries '.' and '..' even if they are present in the directory.
+os.listdir(path) function returns a list containing the names of the entries in the directory given by path. The list is in 
+arbitrary order. It does not include the special entries '.' and '..' even if they are present in the directory.
 Now in order to filter out only files from the list again we can use os module methods
 os.path.isfile(path) returns True if path is an existing regular file.
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-We can also use os.walk(path) method  which will yield two lists for each directory it visits - splitting into files and dirs for you. 
-If you only want the top directory you can just break the first time it yields.
+We can also use os.walk(path) method, which will yield two lists for each directory it visits - splitting into files and dirs 
+for you.If you only want the top directory you can just break the first time it yields.
 from os import walk
 f = []
 for (dirpath, dirnames, filenames) in walk(mypath):
     f.extend(filenames)
     break
-----------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
 
 5.Difference between extend and appned in python list?
-append adds an element to a list, and extend concatenates the first list with another list (or another iterable, not necessarily a list)
-if you pass a sequence in extend the elements of the sequece will be addedas individual element of list wherease if append will be used 
-then whole sequece object will be added as single element in list.
-----------------------------------------------------------------------------------------------------------------------------------------
+append adds an element to a list, and extend concatenates the first list with another list (or another iterable, not 
+necessarily a list)if you pass a sequence in extend the elements of the sequece will be added as individual element of list 
+wherease, if append will be used then whole sequece object will be added as single element in list.
+----------------------------------------------------------------------------------------------------------------------------
 
 6.What is MRO
 MRO or method resolution order, is class serach path used by python to search for the right method to use in classes having multiple 
@@ -134,77 +137,78 @@ merge : 1.Take the head of the first list, i.e L[B1][0]
                   L[B] = B + D + merge(O,EO,E)  
                   L[B] = B + D + E + merge(O,O)
                   L[B] = B + D + E + O
- ---------------------------------------------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------------------------------
                     
 7.What type of objects can be used as key in dict?
-Inorder to answer this question let's start with the uderstanding of how python dictionaries work/ Dictionary in python is also known as
-mapping beacuse they map the key objects to the value objects.One way achieving this would be storing (key,value) pairs and and then 
-search the list sequentially every time a value was requested.However this would take much time for large number of entries as time
-complexity would be O(n) to search linearly.Python's dictionary implementation reduces the average complexity of dictionary lookups 
-to O(1) by requiring that key objects provide a "hash" function.Such a hash function takes the information in a key object and uses it 
-to produce an integer, called a hash value.This hash value then determines in which bucket this pair should be placed.When any key is
-used to get the value first correct bucket is found then it's searched sequentially.For such a lookup algorithm to work correctly, 
-the hash functions provided must guarantee that if two keys produce different hash values then the two key objects are not equivalent.
-Otherwise, checking the hash value of a key object might make us look in the wrong bucket and thus never find the associated value.
-Morover for such a lookup algorithm to work efficiently, most buckets should have only a small number of items (preferably only one).
-Hash functions that can approximate this property well will distribute (key, value) pairs evenly across the buckets, and keep lookup 
-time down.
-                                               From above explaination it's clear that To be used as a dictionary key, an object must 
-support the hash function (e.g. through __hash__), equality comparison (e.g. through __eq__ or __cmp__), and must satisfy the 
-correctness condition above. Having said that "list" is automatically out of race.f lists hashed by id, this would certainly be valid 
-given Python's definition of a hash function -- lists with different hash values would have different ids. But lists are containers, 
-and most other operations on them deal with them as such. So hashing lists by their id instead would produce unexpected behavior 
-such as:
-*Looking up different lists with the same contents would produce different results, even though comparing lists with the same contents
-would indicate them as equivalent.
-*Using a list literal in a dictionary lookup would be pointless -- it would always produce a KeyError.
-
-If lists were hashed by their contents (as tuples are), this, too, would be a valid hash function - lists with different hash values 
-would have different contents. So, again, the problem is not in the definition of the hash function. But what should happen when a list,
-being used as a dictionary key, is modified? If the modification changed the hash value of the list (because it changed the contents of 
-the list), then the list would be in the wrong "bucket" of the dictionary.
-                                                  Having found that both ways of hashing lists have some undesirable side-effects, it 
-should be more obvious why Python takes the stance that the builtin list type should not be used as a dictionary key.By default, all 
-user defined types are usable as dictionary keys with hash(object) defaulting to id(object), and cmp(object1, object2) defaulting to 
-cmp(id(object1), id(object2)). This same suggestion was discussed above for lists and found unsatisfactory. Why are user defined types
-different?
+Inorder to answer this question let's start with the uderstanding of how python dictionaries work.Dictionary in python is also 
+known as mapping beacuse they map the key objects to the value objects.One way achieving this would be storing (key,value) 
+pairs and and then search the list sequentially every time a value was requested.However this would take much time for large 
+number of entries as time complexity would be O(n) to search linearly.Python's dictionary implementation reduces the average 
+complexity of dictionary lookups to O(1) by requiring that key objects provide a "hash" function.Such a hash function takes 
+the information in a key object and uses it to produce an integer, called a hash value.This hash value then determines in 
+which bucket this pair should be placed.When any key is used to get the value first correct bucket is found then it's 
+searched sequentially.For such a lookup algorithm to work correctly, the hash function provided must guarantee that if two 
+keys produce different hash values then the two key objects are not equivalent. Otherwise, checking the hash value of a key 
+object might make us look in the wrong bucket and thus never find the associated value. Morover for such a lookup algorithm to
+work efficiently, most buckets should have only a small number of items (preferably only one). Hash functions that can 
+approximate this property well, will distribute (key, value) pairs evenly across the buckets, and keep lookups time down.
+                                               From above explaination it's clear that to be used as a dictionary key, an 
+object must support the hash function (e.g. through __hash__), equality comparison (e.g. through __eq__ or __cmp__), and must 
+satisfy the correctness condition above. Having said that "list" is automatically out of race.If lists are hashed by id, 
+this would certainly be valid given Python's definition of a hash function -- lists with different hash values would have 
+different ids. But lists are containers, and most other operations on them deal with them as such. So hashing lists by their 
+id instead would produce unexpected behavior such as:
+* Looking up different lists with the same contents would produce different results, even though comparing lists with the same
+contents would indicate them as equivalent.
+* Using a list literal in a dictionary lookup would be pointless -- it would always produce a KeyError.
+                                              If lists were hashed by their contents (as tuples are), this, too, would be a 
+valid hash function - lists with different hash values would have different contents. So, again, the problem is not in the 
+definition of the hash function. But what should happen when a list, being used as a dictionary key, is modified? If the 
+modification changed the hash value of the list (because it changed the contents of the list), then the list would be in the 
+wrong "bucket" of the dictionary.
+                                           Having found that both ways of hashing lists have some undesirable side-effects, it 
+should be more obvious why Python takes the stance that the builtin list type should not be used as a dictionary key.By 
+default, all user defined types are usable as dictionary keys with hash(object) defaulting to id(object), and 
+cmp(object1, object2) defaulting to cmp(id(object1), id(object2)). This same suggestion was discussed above for lists and 
+found unsatisfactory. Why are user defined types different?
 *In the cases where an object must be placed in a mapping, object identity is often much more important than object contents.
-*In the cases where object content really is important, the default settings can be redefined by overridding __hash__ and __cmp__ 
-or __eq__.
-=>Note that it is often better practice, when an object is to be associated with a value, to simply assign that value as one of the 
-object's attributes.
----------------------------------------------------------------------------------------------------------------------------------------
+*In the cases where object content really is important, the default settings can be redefined by overridding 
+__hash__ and __cmp__ or __eq__.
+=>Note that it is often better practice, when an object is to be associated with a value, to simply assign that value as one 
+of the object's attributes.
+-----------------------------------------------------------------------------------------------------------------------------
 
-8.You have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the ordered 
-according to the 10th element of list.
-The key argument of the sorted function lets you derive a sorting key for each element of the list.Starting with Python 2.4, both
-list.sort() and sorted() added a key parameter to specify a function to be called on each list element prior to making comparisons.
-The value of the key parameter should be a function that takes a single argument and returns a key to use for sorting purposes. This 
-technique is fast because the key function is called exactly once for each input record.
+8.You have a dict where each value is the list of 10 elements, now order the dict appearance in the way that they get the 
+ordered according to the 10th element of list.
+The key argument of the sorted function lets you derive a sorting key for each element of the list.Starting with Python 2.4, 
+both list.sort() and sorted() added a key parameter to specify a function to be called on each list element prior to making 
+comparisons.The value of the key parameter should be a function that takes a single argument and returns a key to use for 
+sorting purposes. This technique is fast because the key function is called exactly once for each input record.
 >>> myDict = {'first': [3,5,6,7,4,6,7,8,9,100,3,3], 'second':[4,5,6,7,24,6,4,3,7,45,3,2,4], 'third':[5,6,24,54,5,67,4,2,2,4,5,6,]}
 >>> sorted(myDict.items(), key=lambda e: e[1][9])
 [('third', [5, 6, 24, 54, 5, 67, 4, 2, 2, 4, 5, 6]), ('second', [4, 5, 6, 7, 24, 6, 4, 3, 7, 45, 3, 2, 4]), 
 ('first', [3, 5, 6, 7, 4, 6, 7, 8, 9, 100, 3, 3])]
 
 The preferred Python pattern (idiom) for sorting by any alternative criterium is called "decorate-sort-undecorate" (DSU). 
-In this idiom you create a temporary list which contains tuples of your key(s) followed by your original data elements, then call the 
-normal .sort() method on that list (or, in more recent versions of Python simply wrap your decoration in a called to the sorted() 
-built-in function). Then you remove the "decorations."
+In this idiom you create a temporary list which contains tuples of your key(s) followed by your original data elements, then 
+call the normal .sort() method on that list (or, in more recent versions of Python simply wrap your decoration in a called to 
+the sorted() built-in function). Then you remove the "decorations."
 >>[y[1] for y in sorted([(myDict[x][2], x) for x in myDict.keys()])]
-The reason this is generally preferred over passing comparison function to the .sort() method is that Python's built-in default sorting
-code (compiled C in the normal C Python) is very fast and efficient in the default case, but much, much slower when it has to call
-Python object code many, many times in the non-default case. So it's usually far better to iterate over the data creating data 
-structures which can be passed to the default sort routines.
-----------------------------------------------------------------------------------------------------------------------------------------
+The reason this is generally preferred over passing comparison function to the .sort() method is that Python's built-in 
+default sorting code (compiled C in the normal C Python) is very fast and efficient in the default case, but much, much 
+slower when it has to call Python object code many, many times in the non-default case. So it's usually far better to iterate 
+over the data creating data structures which can be passed to the default sort routines.
+-----------------------------------------------------------------------------------------------------------------------------
 
 9.Whate are decorators, how to use decorators with arguments?
-Decorators are just a pythonic variant of the decorator design pattern. Assume that you have defined a function and you really don't 
-want to change the function or you just have access to call the function but not the source to it so you can modify it in such case the
-decorators becomes really useful.As we know that everything is object in python and so does function so we can assign the function to a 
-another container, return a function from another function and even we can define a function inside a function, however it's scope will
-be inside the function only you can't call it outside.Niw coming back to the decorators part if we want to perform some operation before
-and/or after a function is called and we can't modify the function we can simply pass this function as parameter inside another function
-where we can write the desired code run the function wherever we want and we can return return this function and excute later on.E.g.
+Decorators are just a pythonic variant of the decorator design pattern. Assume that you have defined a function and you really
+don't want to change the function or you just have access to call the function but not the source to it so you can modify it, 
+in such case the decorators becomes really useful.As we know that everything is object in python and so does function, so we 
+can assign the function to another container, return a function from another function and even we can define a function inside
+a function, however it's scope will be inside the function only, you can't call it outside.Now coming back to the decorators 
+part if we want to perform some operation before and/or after a function is called and we can't modify the function we can 
+simply pass this function as parameter inside another function where we can write the desired code run the function wherever 
+we want and can return this function and excute later on.E.g.
 >>a_stand_alone_function = my_shiny_new_decorator(a_stand_alone_function)
 >>a_stand_alone_function()
 but there is more pythonic way of doing this 
@@ -212,9 +216,9 @@ but there is more pythonic way of doing this
 def another_stand_alone_function():
     print 'Leave me alone'
 >>another_stand_alone_function() 
-Now comes the second part of the question, the syntax for decorators with arguments is a bit different - the decorator with arguments 
-should return a function that will take a function and return another function. So it should really return a normal decorator. A bit
-confusing, right? What I mean is:
+Now comes the second part of the question, the syntax for decorators with arguments is a bit different - the decorator with 
+arguments should return a function that will take a function and return another function. So it should really return a normal
+decorator. A bit confusing, right? What it means is:
 def decorator_with_argument(argument):
     def my_shiny_new_decorator(function):
         def wrapper(*args, **kwargs):
@@ -225,29 +229,32 @@ def decorator_with_argument(argument):
             return result
         return wrapper
     return my_shiny_new_decorator
-you can see we have just added another level in function decoration with accepts the arguments and now those arguments can be used
-anywhere inside your function to make decorator more useful.
+you can see we have just added another level in function decoration with accepts the arguments and now those arguments can be
+used anywhere inside your function to make decorators more useful.
 Now using this would also be easy we just have to use outermost decorator name with the desired argument passed.
 @decorator_with_argument(myargument)
 def another_stand_alone_function(a,b):
     print 'Leave me alone'+a+b
-----------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
 
-10.Strings are mutable or immutalbe?justify your answer.
-Python strings are immatable. However still you can perform some operations like replace, split but evey time a new string is formed 
-old one is not changed. The reason behind this is, all the things are objects in python. As we know with any object only those methods 
-are allowed which have defined in the scope of the class so you can't really call methods on the objects of this class type, same is the
-case with the opertors you can use operators which have not been overloaded or defined inside class defination.
-----------------------------------------------------------------------------------------------------------------------------------------
+10.Strings are mutable or immutalbe? justify your answer.
+Python strings are immatable. However still you can perform some operations like replace, split but evey time a new string is
+formed and the reference get shifted to the this new string from old one.The reason behind this is, all the things are objects
+in python. As we know with any object only those methods are allowed which have been defined in the scope of the class so you
+can't really call methods on the objects of this class type, same is the case with the opertors you can use operators which 
+have not been overloaded or defined inside class defination.
+----------------------------------------------------------------------------------------------------------------------------
 
 11.What is the command to debug python program?
 python -m pdb filename.py
 for next line press n
-----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
 
 
 12.What is a "callable"?
-A callable is an object we can call - function or an object implementing the __call__ special method. Any object can be made callable.
+A callable is an object we can call - function or an object implementing the __call__ special method. 
+Any object can be made callable.
+------------------------------------------------------------------------------------------------------------------------------
 
 13.How to copy objects in python?What's the differece between shallow and deep copy?
 
