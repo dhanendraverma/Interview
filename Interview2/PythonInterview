@@ -257,6 +257,22 @@ Any object can be made callable.
 ------------------------------------------------------------------------------------------------------------------------------
 
 13.How to copy objects in python?What's the differece between shallow and deep copy?
+Copying the list in the python is trickier, there are three ways we can use "=" assingment operator, shallow copy and deep 
+copy.Assignment with an = on lists does not make a copy. Instead, assignment makes the two variables point to the one list 
+in memory.So, if you edit the new list, changes will be reflected on the original list.The difference between shallow and 
+deep copying is only relevant for compound objects (e.g. a list of lists, or class instances).A shallow copy constructs a 
+new compound object and then (to the extent possible) inserts references into it to the objects found in the original.Let’s 
+look at the easy bits first. Here is how you make a shallow copy. In Python 3, you can use list.copy(). However, I prefer 
+the equivalent expression list[:] because it works in both Python 2 and 3.Shallow copy is different from assignment in that 
+it creates a new object. So, if you make changes to the new list, such as adding or removing items, it won’t affect the 
+original list.If the original list is a compound object (e.g. a list of lists), the elements in the new object are referenced 
+to the original elements. (which is why it is called a shallow copy). So, if you modify the mutable elements like lists, the
+changes will be reflected on the original elements.A deep copy constructs a new compound object and then, recursively, 
+inserts copies into it of the objects found in the original. The deep copy is different from shallow copy in that the copied
+elements have their own pointers and are not referenced to the original elements. Therefore, no matter how you modify the 
+deep copy, the changes will NOT be reflected on the original list.Creating a deep copy is slower, because you are making new
+copies for everything. You will need to import copy module to make a deep copy.
+------------------------------------------------------------------------------------------------------------------------------
 
 14.What is delegation in python?
 
